@@ -1,0 +1,27 @@
+.card {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__top {
+  width: 178px;
+  margin-left: auto;
+  border: 4px solid black;
+  border-bottom: none;
+  border-left: none;
+  position: relative;
+  border-top-right-radius: 10px;
+}
+
+.card__top::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: -26px;
+  width: 32px;
+  transform: rotate(-46deg);
+  border-top: 4px solid black;
+  border-top-left-radius: 2px;
+}
