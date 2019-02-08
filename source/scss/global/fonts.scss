@@ -9,4 +9,5 @@
     }
   }
   
-  @include font-face('Exo', '../fonts/Exo2Thin', 400);
+@include font-face('Exo', '../fonts/Exo2Thin', 300);
+// @include font-face('Exo', '../fonts/Exo2Bold', 700);
