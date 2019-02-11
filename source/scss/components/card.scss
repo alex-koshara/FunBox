@@ -3,6 +3,16 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  &:hover {
+    & .card__main,
+    & .card__top {
+      border-color: $hover-card;
+    }
+    & .card__triangle {
+      color: $hover-card;
+      background: linear-gradient(-45deg, white 0, white 32px, $hover-card 32px, $hover-card 36px, transparent 34px);
+    }
+  }
 }
 
 .card__top {
@@ -28,6 +38,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
+  color: $default-card;
   z-index: 1;
   width: 48px;
   height: 41px;
@@ -38,7 +49,7 @@
     display: block;
     width: 6px;
     height: 4px;
-    background: #1698d9;
+    background-color: currentColor;
     right: 2px;
     top: 0;
   }
