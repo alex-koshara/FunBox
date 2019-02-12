@@ -12,6 +12,19 @@
       color: $hover-card;
       background: linear-gradient(-45deg, white 0, white 32px, $hover-card 32px, $hover-card 36px, transparent 34px);
     }
+    & .card__weight-wrap {
+      background-color: $hover-card;
+    }
+  }
+
+  @media (min-width: $tablet) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: $desktop) {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -115,4 +128,23 @@
 .card__to-weight {
   font-size: 21px;
   margin-top: -10px;
+}
+
+.card__footer {
+  color: white;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.card__buy {
+  margin: 0;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-left: 6px;
+  &-link {
+    text-decoration: dotted;
+    color: $blue;
+  }
 }
