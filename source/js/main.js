@@ -1,25 +1,41 @@
 'use strict';
 
-const cardList = document.querySelector('.card-list');
+const CARD_CLASS = 'card';
+const CARD_LIST = document.querySelector('.card-list');
+let currentCard = null;
 
-cardList.addEventListener('click', function(evt) {
+CARD_LIST.addEventListener('click', function(evt) {
   evt.preventDefault();
 
   let target = evt.target;
-  const cardClass = 'card';
-  let currentCard = findParentNode(target, cardClass);
-  const isFooterCard = findFooterParent(target);
+  const IS_FOOTER_CARD = findFooterParent(target);
+  currentCard = findParentNode(target, CARD_CLASS);
 
-  if (isLegalCardArea(target, currentCard, isFooterCard)) {
+  if (isLegalCardArea(target, currentCard, IS_FOOTER_CARD)) {
+    if(stateCard.isMouseOut) {
+      currentCard.classList.toggle('active');
+    }
+    stateCard.isClicked = !stateCard.isClicked;
+    stateCard.isFirstClickCard = true;
+    console.log(stateCard);
+  }
+});
+
+CARD_LIST.addEventListener('mouseout', function(evt) {
+  let target = evt.target;
+  let currentCard = findParentNode(target, CARD_CLASS);
+  // console.log(currentCard, stateCard.isMouseOut);
+  if (currentCard.classList.contains('card') && stateCard.isClicked) {
+    stateCard.isMouseOut = true;
     currentCard.classList.toggle('active');
   }
-})
+});
 
 function findParentNode(target, parentClass) {
   let findElem = false;
   let parentElem = null;
-  
-  while(!findElem){
+
+  while(!findElem) {
     if(target.classList.contains(parentClass) || target.tagName.toLowerCase() == 'body') {
       findElem = true;
       parentElem = target;
@@ -32,10 +48,10 @@ function findParentNode(target, parentClass) {
 }
 
 function findFooterParent(elem) {
-  const cardFooterClass = 'card__footer';
-  let parent = findParentNode(elem, cardFooterClass);
+  const CARD_FOOTER_CLASS = 'card__footer';
+  let parent = findParentNode(elem, CARD_FOOTER_CLASS);
 
-  if(parent.classList.contains(cardFooterClass)) {
+  if(parent.classList.contains(CARD_FOOTER_CLASS)) {
     return parent;
   }
 

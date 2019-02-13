@@ -1,0 +1,62 @@
+{
+  "templateStr" : {
+    "default" : "",
+    "active" : "",
+    "disabled" : "Печалька,"
+  },
+  "Cards" : [
+    {
+      "desc" : "Сказочное заморское яство",
+      "title" : "Нямушка",
+      "fill" : "с фуа-гра",
+      "portions" : "10 порций",
+      "prize" : "мышь в подарок",
+      "weightNum" : "",
+      "toWeight" : "",
+      "buy" : "",
+      "buy-link" : "",
+      "state" : {
+        "isClicked": false,
+        "isMouseOut": false,
+        "isFirstClickCard": false
+      },
+      "templateStrs" : {
+        "default": "",
+        "active": "",
+        "disabled": "Печалька,"
+      }
+    },
+    {
+      "desc": "",
+      "title": "",
+      "fill": "",
+      "portions": "",
+      "prize": "",
+      "weightNum": "",
+      "toWeight": "",
+      "buy": "",
+      "buy-link": "",
+      "state": {
+        "isClicked": false,
+        "isMouseOut": false,
+        "isFirstClickCard": false
+      }
+    },
+    {
+      "desc": "",
+      "title": "",
+      "fill": "",
+      "portions": "",
+      "prize": "",
+      "weightNum": "",
+      "toWeight": "",
+      "buy": "",
+      "buy-link": "",
+      "state": {
+        "isClicked": false,
+        "isMouseOut": false,
+        "isFirstClickCard": false
+      }
+    }
+  ]
+}
