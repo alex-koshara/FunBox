@@ -11,51 +11,55 @@
       "fill" : "с фуа-гра",
       "portions" : "10 порций",
       "prize" : "мышь в подарок",
-      "weightNum" : "",
-      "toWeight" : "",
-      "buy" : "",
-      "buy-link" : "",
+      "weightNum" : "5",
+      "toWeight" : "кг",
+      "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state" : {
         "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
       },
       "templateStrs" : {
-        "default": "",
-        "active": "",
-        "disabled": "Печалька,"
+        "active": "Печень утки разварная с артишоками.",
+        "disabled": "Печалька, с фуа-гра закончился."
       }
     },
     {
-      "desc": "",
-      "title": "",
-      "fill": "",
-      "portions": "",
-      "prize": "",
-      "weightNum": "",
-      "toWeight": "",
-      "buy": "",
-      "buy-link": "",
+      "desc": "Сказочное заморское яство",
+      "title": "Нямушка",
+      "fill": "с рыбой",
+      "portions": "40 порций",
+      "prize": "2 мыши в подарок",
+      "weightNum": "2",
+      "toWeight": "кг",
+      "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state": {
         "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
+      },
+      "templateStrs": {
+        "active": "Головы щучьи с чесноком да свежайшая сёмгушка.",
+        "disabled": "Печалька, с рыбой закончился."
       }
     },
     {
-      "desc": "",
-      "title": "",
-      "fill": "",
-      "portions": "",
-      "prize": "",
-      "weightNum": "",
-      "toWeight": "",
-      "buy": "",
-      "buy-link": "",
+      "desc": "Сказочное заморское яство",
+      "title": "Нямушка",
+      "fill": "с курой",
+      "portions": "100 порций",
+      "prize": "5 мышей в подарок <br> заказчик доволен",
+      "weightNum": "5",
+      "toWeight": "кг",
+      "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state": {
         "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
+      },
+      "templateStrs": {
+        "active": "Печень утки разварная с артишоками.",
+        "disabled": "Печалька, с фуа-гра закончился."
       }
     }
   ]

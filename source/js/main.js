@@ -1,5 +1,19 @@
 'use strict';
 
+const URL = 'js/data.json';
+
+let data = fetch(URL)
+  .then(function (response) {
+    alert(response.headers.get('Content-Type')); // application/json; charset=utf-8
+    alert(response.status); // 200
+
+    return response.json();
+  })
+  .then(function (data) {
+    alert(data); // iliakan
+  })
+  .catch(alert);;
+
 const CARD_CLASS = 'card';
 const CARD_LIST = document.querySelector('.card-list');
 let currentCard = null;
