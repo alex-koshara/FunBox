@@ -34,6 +34,13 @@ gulp.task("server", function () {
 
   gulp.watch("source/scss/**/*.scss", gulp.series("css"));
   gulp.watch("source/*.html", gulp.series("html", "refresh"));
+  gulp.watch("source/js/*.js", gulp.series("js", "refresh"));
+});
+
+gulp.task('js', function (done) {
+    return gulp.src("source/js/main.js")
+    .pipe(gulp.dest('build/js'));
+    done();
 });
 
 gulp.task("refresh", function (done) {

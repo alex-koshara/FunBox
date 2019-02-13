@@ -3,7 +3,21 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  &:hover {
+  &.active {
+    & .card__main,
+    & .card__top {
+      border-color: $active-card;
+    }
+    & .card__triangle {
+      color: $active-card;
+      background: linear-gradient(-45deg, white 0, white 32px, $active-card 32px, $active-card 36px, transparent 34px);
+    }
+    & .card__weight-wrap {
+      background-color: $active-card;
+    }
+  }
+
+  & card__container:hover {
     & .card__main,
     & .card__top {
       border-color: $hover-card;
@@ -44,6 +58,8 @@
 .card__desc {
   margin: 0;
   padding-top: 15px;
+  position: relative;
+  z-index: 1;
 }
 
 .card__triangle {
@@ -144,7 +160,25 @@
   padding-top: 12px;
   padding-left: 6px;
   &-link {
-    text-decoration: dotted;
     color: $blue;
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+  }
+}
+
+.card.card--disabled {
+  & .card__desc {
+    user-select: none;
+  }
+  & .card__top::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    opacity: .8;
   }
 }

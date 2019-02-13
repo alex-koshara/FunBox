@@ -1,9 +1,14 @@
 $blue: #1698d9;
 $light-blue: #2ea8e6;
 $pink: #d91667;
+$light-pink: #e62e7a;
+$light-grey: #b3b3b3;
 
 $default-card: $blue;
-$hover-card: $pink;
+$hover-card: $light-blue;
+$active-card: $pink;
+$active-card--hover: $light-pink;
+$disabled-card: $light-grey;
 
 // WIDTH
 $desktop: 1200px;
