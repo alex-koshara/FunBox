@@ -4,7 +4,7 @@
   flex-direction: column;
   position: relative;
 
-  & .card__container:hover {
+  &__container:hover {
     & .card__main,
     & .card__top {
       border-color: $hover-card;
@@ -45,10 +45,6 @@
         background-color: $active-card--hover;
       }
     }
-
-    &.card--disabled {
-      
-    }
   }
   
   @media (min-width: $tablet) {
@@ -74,6 +70,8 @@
   border-top-right-radius: 10px;
   z-index: 2;
   transition: border .3s linear;
+  position: relative;
+  z-index: 1;
 }
 
 .card__desc {
@@ -122,6 +120,8 @@
   flex-direction: column;
   padding-bottom: 11px;
   padding-right: 11px;
+  position: relative;
+  z-index: 1;
 }
 
 .card__title {
@@ -190,11 +190,13 @@
   }
 }
 
-.card.card--disabled {
+.card.card--disabled,
+.card.active.card--disabled {
   & .card__desc {
     user-select: none;
   }
-  & .card__top::before {
+  & .card__top::before,
+  & .card__main::before {
     content: '';
     display: block;
     position: absolute;
@@ -202,7 +204,19 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: white;
-    opacity: .8;
+    background-color: $white;
+    opacity: .5;
+    z-index: 2;
   }
+  & .card__main,
+    & .card__top {
+      border-color: $disabled-card;
+    }
+    & .card__triangle {
+      color: $disabled-card;
+      background: linear-gradient(-45deg, white 0, white 32px, $disabled-card 32px, $disabled-card 36px, transparent 34px);
+    }
+    & .card__weight-wrap {
+      background-color: $disabled-card;
+    }
 }
