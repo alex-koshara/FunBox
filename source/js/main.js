@@ -33,7 +33,6 @@ window.renderCardTemplate = (function() {
     setCardState(card);
     
     function setCardState(card) {
-      cardArticle.dataset.isClicked = card.state.isClicked;
       cardArticle.dataset.isMouseOut = card.state.isMouseOut;
       cardArticle.dataset.isFirstClickCard = card.state.isFirstClickCard;
     }
@@ -76,12 +75,6 @@ CARD_LIST.addEventListener('click', function(evt) {
       currentCard.classList.toggle('active');
     }
 
-    if(currentCard.dataset.isClicked === 'false') {
-      currentCard.dataset.isClicked = true;
-    } else {
-      currentCard.dataset.isClicked = false;
-    }
-
     currentCard.dataset.isFirstClickCard = true;
   }
 });
@@ -107,7 +100,7 @@ CARD_LIST.addEventListener('mouseout', function(evt) {
   if(!currentCard) return;
 
   let relatedTarget = evt.relatedTarget;
-  
+
   if(relatedTarget) {
     while(relatedTarget) {
       if(relatedTarget == currentCard) return;
