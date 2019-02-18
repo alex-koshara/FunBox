@@ -1,10 +1,5 @@
 {
-  "templateStr" : {
-    "default" : "",
-    "active" : "",
-    "disabled" : "Печалька,"
-  },
-  "Cards" : [
+  "cards" : [
     {
       "desc" : "Сказочное заморское яство",
       "title" : "Нямушка",

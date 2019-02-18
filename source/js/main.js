@@ -10,16 +10,16 @@ let data = fetch(URL)
     return response.json();
   })
   .then(function (data) {
-    renderContainer(data); // iliakan
+    renderContainer(data);
   })
-  .catch(alert);;
+  .catch(alert);
   
-  function renderCardTemplate(data) {
-    const CARDS = data;
-    const CARD_TEMPALTE = document.querySelector('#card-template');
-    let card = CARD_TEMPALTE.content.querySelector('.card-list__wrap');
-    
-    return function(card, data) {
+function renderCardTemplate(data) {
+  const CARDS = data;
+  const CARD_TEMPALTE = document.querySelector('#card-template');
+  let card = CARD_TEMPALTE.content.querySelector('.card-list__wrap');
+  
+  return function(card, data) {
     let newCard = lectureElement.cloneNode(true);
     let cardDesc = newCard.querySelector('.card__desc');
     let cardTitle = newCard.querySelector('.card__title');
@@ -48,9 +48,10 @@ function renderContainer(data) {
   if (!Array.isArray(data)) {
     cards = data.cards;
   }
-  
+  console.log(cards);
   cards.forEach(function (card) {
     // console.log(CARD_LIST)
+    var div = document.createElement('div');
     CARD_LIST.appendChild(window.renderCardTemplate(card, data));
   });
 }
