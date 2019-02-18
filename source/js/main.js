@@ -1,12 +1,12 @@
 'use strict';
 
 const URL = 'js/data.json';
+const CARD_CLASS = 'card';
+const CARD_LIST = document.querySelector('.card-list');
+let currentCard = null;
 
 let data = fetch(URL)
   .then(function (response) {
-    alert(response.headers.get('Content-Type')); // application/json; charset=utf-8
-    alert(response.status); // 200
-
     return response.json();
   })
   .then(function (data) {
@@ -14,9 +14,23 @@ let data = fetch(URL)
   })
   .catch(alert);;
 
-const CARD_CLASS = 'card';
-const CARD_LIST = document.querySelector('.card-list');
-let currentCard = null;
+function renderTemplate(data) {
+  const CARDS = data;
+  const CARD_TEMPALTE = document.querySelector('#card-template');
+  let card = CARD_TEMPALTE.querySelector('.card-list__wrap');
+  return function (card, data) {
+    let newCard = lectureElement.cloneNode(true);
+    let cardDesc = newCard.querySelector('.card__desc');
+    let cardTitle = newCard.querySelector('.card__title');
+    let cardFill = newCard.querySelector('.card__fill');
+    let cardPortions = newCard.querySelector('.card__portions');
+    let cardPrize = newCard.querySelector('.card__prize');
+    let cardWeightNum = newCard.querySelector('.card__weight-num');
+    let cardToWeight = newCard.querySelector('.card__to-weight');
+    let cardBuy = newCard.querySelector('.card__Buy');
+  }
+}
+
 
 CARD_LIST.addEventListener('click', function(evt) {
   evt.preventDefault();
