@@ -10,15 +10,16 @@ let data = fetch(URL)
     return response.json();
   })
   .then(function (data) {
-    alert(data); // iliakan
+    renderContainer(data); // iliakan
   })
   .catch(alert);;
-
-function renderTemplate(data) {
-  const CARDS = data;
-  const CARD_TEMPALTE = document.querySelector('#card-template');
-  let card = CARD_TEMPALTE.querySelector('.card-list__wrap');
-  return function (card, data) {
+  
+  function renderCardTemplate(data) {
+    const CARDS = data;
+    const CARD_TEMPALTE = document.querySelector('#card-template');
+    let card = CARD_TEMPALTE.content.querySelector('.card-list__wrap');
+    
+    return function(card, data) {
     let newCard = lectureElement.cloneNode(true);
     let cardDesc = newCard.querySelector('.card__desc');
     let cardTitle = newCard.querySelector('.card__title');
@@ -28,7 +29,30 @@ function renderTemplate(data) {
     let cardWeightNum = newCard.querySelector('.card__weight-num');
     let cardToWeight = newCard.querySelector('.card__to-weight');
     let cardBuy = newCard.querySelector('.card__Buy');
+
+    cardDesc.textContent = data.desc;
+    cardTitle.textContent = data.title;
+    cardFill.textContent = data.fill;
+    cardPortions.textContent = data.portions;
+    cardPrize.textContent = data.prize;
+    cardWeightNum.textContent = data.weightNum;
+    cardToWeight.textContent = data.toWeight;
+    cardBuy.textContent = data.buy;
   }
+}
+
+function renderContainer(data) {
+  CARD_LIST.innerHTML = '';
+  let cards = data;
+  
+  if (!Array.isArray(data)) {
+    cards = data.cards;
+  }
+  
+  cards.forEach(function (card) {
+    // console.log(CARD_LIST)
+    CARD_LIST.appendChild(window.renderCardTemplate(card, data));
+  });
 }
 
 
