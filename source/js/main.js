@@ -14,13 +14,12 @@ let data = fetch(URL)
   })
   .catch(alert);
   
-function renderCardTemplate(data) {
-  const CARDS = data;
+window.renderCardTemplate = (function() {
   const CARD_TEMPALTE = document.querySelector('#card-template');
-  let card = CARD_TEMPALTE.content.querySelector('.card-list__wrap');
+  let cardElement = CARD_TEMPALTE.content.querySelector('.card-list__wrap');
   
   return function(card, data) {
-    let newCard = lectureElement.cloneNode(true);
+    let newCard = cardElement.cloneNode(true);
     let cardDesc = newCard.querySelector('.card__desc');
     let cardTitle = newCard.querySelector('.card__title');
     let cardFill = newCard.querySelector('.card__fill');
@@ -28,18 +27,28 @@ function renderCardTemplate(data) {
     let cardPrize = newCard.querySelector('.card__prize');
     let cardWeightNum = newCard.querySelector('.card__weight-num');
     let cardToWeight = newCard.querySelector('.card__to-weight');
-    let cardBuy = newCard.querySelector('.card__Buy');
+    let cardBuy = newCard.querySelector('.card__buy');
 
-    cardDesc.textContent = data.desc;
-    cardTitle.textContent = data.title;
-    cardFill.textContent = data.fill;
-    cardPortions.textContent = data.portions;
-    cardPrize.textContent = data.prize;
-    cardWeightNum.textContent = data.weightNum;
-    cardToWeight.textContent = data.toWeight;
-    cardBuy.textContent = data.buy;
-  }
-}
+    setCardState(card);
+    
+    function setCardState(card) {
+      // newCard.setAttribute('isClicked', card.state.isClicked);
+      newCard.setAttribute('isMouseOut', card.state.isMouseOut);
+      newCard.setAttribute('isFirstClickCard', card.state.isFirstClickCard);
+    }
+
+    cardDesc.textContent = card.desc;
+    cardTitle.textContent = card.title;
+    cardFill.textContent = card.fill;
+    cardPortions.textContent = card.portions;
+    cardPrize.innerHTML = card.prize;
+    cardWeightNum.textContent = card.weightNum;
+    cardToWeight.textContent = card.toWeight;
+    cardBuy.innerHTML = card.buy;
+
+    return newCard;
+  };
+})();
 
 function renderContainer(data) {
   CARD_LIST.innerHTML = '';
@@ -48,9 +57,8 @@ function renderContainer(data) {
   if (!Array.isArray(data)) {
     cards = data.cards;
   }
-  console.log(cards);
+
   cards.forEach(function (card) {
-    // console.log(CARD_LIST)
     var div = document.createElement('div');
     CARD_LIST.appendChild(window.renderCardTemplate(card, data));
   });
