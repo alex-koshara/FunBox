@@ -35,6 +35,9 @@ window.renderCardTemplate = (function() {
     function setCardState(card) {
       cardArticle.dataset.isMouseOut = card.state.isMouseOut;
       cardArticle.dataset.isFirstClickCard = card.state.isFirstClickCard;
+      if(card.state.disabled) {
+        cardArticle.classList.add('card--disabled');
+      }
     }
 
     cardDesc.textContent = card.desc;
