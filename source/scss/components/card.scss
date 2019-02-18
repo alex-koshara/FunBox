@@ -4,21 +4,7 @@
   flex-direction: column;
   position: relative;
 
-  &.active {
-    & .card__main,
-    & .card__top {
-      border-color: $active-card;
-    }
-    & .card__triangle {
-      color: $active-card;
-      background: linear-gradient(-45deg, white 0, white 32px, $active-card 32px, $active-card 36px, transparent 34px);
-    }
-    & .card__weight-wrap {
-      background-color: $active-card;
-    }
-  }
-
-  & card__container:hover {
+  & .card__container:hover {
     & .card__main,
     & .card__top {
       border-color: $hover-card;
@@ -32,6 +18,39 @@
     }
   }
 
+  
+  &.active {
+    & .card__main,
+    & .card__top {
+      border-color: $active-card;
+    }
+    & .card__triangle {
+      color: $active-card;
+      background: linear-gradient(-45deg, white 0, white 32px, $active-card 32px, $active-card 36px, transparent 34px);
+    }
+    & .card__weight-wrap {
+      background-color: $active-card;
+    }
+    
+    &:hover {
+      & .card__main,
+      & .card__top {
+        border-color: $active-card--hover;
+      }
+      & .card__triangle {
+        color: $active-card--hover;
+        background: linear-gradient(-45deg, white 0, white 32px, $active-card--hover 32px, $active-card--hover 36px, transparent 34px);
+      }
+      & .card__weight-wrap {
+        background-color: $active-card--hover;
+      }
+    }
+
+    &.card--disabled {
+      
+    }
+  }
+  
   @media (min-width: $tablet) {
     margin-left: auto;
     margin-right: auto;

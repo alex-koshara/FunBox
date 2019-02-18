@@ -10,6 +10,7 @@
       "toWeight" : "кг",
       "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state" : {
+        "disabled": false,
         "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
@@ -29,6 +30,7 @@
       "toWeight": "кг",
       "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state": {
+        "disabled": false,
         "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
@@ -48,6 +50,7 @@
       "toWeight": "кг",
       "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state": {
+        "disabled": true,
         "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false

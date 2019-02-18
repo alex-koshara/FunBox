@@ -20,6 +20,7 @@ window.renderCardTemplate = (function() {
   
   return function(card, data) {
     let newCard = cardElement.cloneNode(true);
+    let cardArticle = newCard.querySelector('article');
     let cardDesc = newCard.querySelector('.card__desc');
     let cardTitle = newCard.querySelector('.card__title');
     let cardFill = newCard.querySelector('.card__fill');
@@ -32,9 +33,9 @@ window.renderCardTemplate = (function() {
     setCardState(card);
     
     function setCardState(card) {
-      // newCard.setAttribute('isClicked', card.state.isClicked);
-      newCard.setAttribute('isMouseOut', card.state.isMouseOut);
-      newCard.setAttribute('isFirstClickCard', card.state.isFirstClickCard);
+      cardArticle.dataset.isClicked = card.state.isClicked;
+      cardArticle.dataset.isMouseOut = card.state.isMouseOut;
+      cardArticle.dataset.isFirstClickCard = card.state.isFirstClickCard;
     }
 
     cardDesc.textContent = card.desc;
@@ -59,11 +60,9 @@ function renderContainer(data) {
   }
 
   cards.forEach(function (card) {
-    var div = document.createElement('div');
     CARD_LIST.appendChild(window.renderCardTemplate(card, data));
   });
 }
-
 
 CARD_LIST.addEventListener('click', function(evt) {
   evt.preventDefault();
@@ -73,23 +72,56 @@ CARD_LIST.addEventListener('click', function(evt) {
   currentCard = findParentNode(target, CARD_CLASS);
 
   if (isLegalCardArea(target, currentCard, IS_FOOTER_CARD)) {
-    if(stateCard.isMouseOut) {
+    if(currentCard.dataset.isMouseOut == 'true') {
       currentCard.classList.toggle('active');
     }
-    stateCard.isClicked = !stateCard.isClicked;
-    stateCard.isFirstClickCard = true;
-    console.log(stateCard);
+
+    if(currentCard.dataset.isClicked === 'false') {
+      currentCard.dataset.isClicked = true;
+    } else {
+      currentCard.dataset.isClicked = false;
+    }
+
+    currentCard.dataset.isFirstClickCard = true;
   }
 });
 
-CARD_LIST.addEventListener('mouseout', function(evt) {
+CARD_LIST.addEventListener('mouseover', function(evt) {
+  if(currentCard) {
+    return;
+  }
+
   let target = evt.target;
-  let currentCard = findParentNode(target, CARD_CLASS);
-  // console.log(currentCard, stateCard.isMouseOut);
-  if (currentCard.classList.contains('card') && stateCard.isClicked) {
-    stateCard.isMouseOut = true;
+  while(target != this) {
+    if (target.tagName == 'ARTICLE') break;
+    target = target.parentNode;
+  }
+
+  if(target == this) return;
+
+  currentCard = target;
+});
+
+
+CARD_LIST.addEventListener('mouseout', function(evt) {
+  if(!currentCard) return;
+
+  let relatedTarget = evt.relatedTarget;
+  
+  if(relatedTarget) {
+    while(relatedTarget) {
+      if(relatedTarget == currentCard) return;
+      relatedTarget = relatedTarget.parentNode;
+    }
+  }
+
+  if(currentCard.dataset.isFirstClickCard == 'true' && currentCard.dataset.isMouseOut == 'false') {
+    currentCard.dataset.isMouseOut = true;
     currentCard.classList.toggle('active');
   }
+
+  currentCard = null;
+
 });
 
 function findParentNode(target, parentClass) {
