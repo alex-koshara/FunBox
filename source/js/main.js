@@ -4,7 +4,7 @@ const URL = 'js/data.json';
 const CARD_CLASS = 'card';
 const CARD_LIST = document.querySelector('.card-list');
 let currentCard = null;
-const DATA;
+let cards_data;
 
 let data = fetch(URL)
   .then(function (response) {
@@ -12,13 +12,14 @@ let data = fetch(URL)
   })
   .then(function (data) {
     renderCards(data);
+    cards_data = data.cards;
   })
   .catch(alert);
-  
+
 window.renderCardTemplate = (function() {
   const CARD_TEMPALTE = document.querySelector('#card-template');
   let cardElement = CARD_TEMPALTE.content.querySelector('.card-list__wrap');
-  
+
   return function(card, data) {
     let newCard = cardElement.cloneNode(true);
     let cardArticle = newCard.querySelector('article');
@@ -32,10 +33,11 @@ window.renderCardTemplate = (function() {
     let cardBuy = newCard.querySelector('.card__buy');
 
     setCardState(card);
-    
+
     function setCardState(card) {
       cardArticle.dataset.isMouseOut = card.state.isMouseOut;
       cardArticle.dataset.isFirstClickCard = card.state.isFirstClickCard;
+      cardArticle.dataset.id = card.id;
       if(card.state.disabled) {
         cardArticle.classList.add('card--disabled');
       }
@@ -57,7 +59,7 @@ window.renderCardTemplate = (function() {
 function renderCards(data) {
   CARD_LIST.innerHTML = '';
   let cards = data;
-  
+
   if (!Array.isArray(data)) {
     cards = data.cards;
   }
@@ -80,13 +82,14 @@ function onClickCardList(evt) {
   if (isLegalCardArea(target, currentCard, IS_FOOTER_CARD)) {
     if (currentCard.dataset.isMouseOut == 'true') {
       currentCard.classList.toggle('active');
+      setCardFooterStateStr(currentCard, cards_data[currentCard.dataset.id])
     }
 
     currentCard.dataset.isFirstClickCard = true;
   }
 }
 
-function setCardFooterStr(currentCard, cardData) {
+function setCardFooterStateStr(currentCard, cardData) {
   let footerElem = currentCard.querySelector('.card__buy');
   if(currentCard.classList.contains('active')) {
     footerElem.textContent = cardData.templateStrs.active;
@@ -133,11 +136,11 @@ function onMouseoutCardList(evt) {
   if (currentCard.dataset.isFirstClickCard == 'true' && currentCard.dataset.isMouseOut == 'false') {
     currentCard.dataset.isMouseOut = true;
     currentCard.classList.toggle('active');
+    setCardFooterStateStr(currentCard, cards_data[currentCard.dataset.id])
   }
 
   currentCard = null;
 }
-
 
 function findParentNode(target, parentClass) {
   let findElem = false;
