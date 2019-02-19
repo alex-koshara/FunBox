@@ -4,13 +4,14 @@ const URL = 'js/data.json';
 const CARD_CLASS = 'card';
 const CARD_LIST = document.querySelector('.card-list');
 let currentCard = null;
+const DATA;
 
 let data = fetch(URL)
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
-    renderContainer(data);
+    renderCards(data);
   })
   .catch(alert);
   
@@ -47,13 +48,13 @@ window.renderCardTemplate = (function() {
     cardPrize.innerHTML = card.prize;
     cardWeightNum.textContent = card.weightNum;
     cardToWeight.textContent = card.toWeight;
-    cardBuy.innerHTML = card.buy;
+    cardBuy.innerHTML = card.state.disabled ? card.templateStrs.disabled : card.buy;
 
     return newCard;
   };
 })();
 
-function renderContainer(data) {
+function renderCards(data) {
   CARD_LIST.innerHTML = '';
   let cards = data;
   
@@ -66,7 +67,10 @@ function renderContainer(data) {
   });
 }
 
-CARD_LIST.addEventListener('click', function(evt) {
+
+CARD_LIST.addEventListener('click', onClickCardList);
+
+function onClickCardList(evt) {
   evt.preventDefault();
 
   let target = evt.target;
@@ -74,51 +78,66 @@ CARD_LIST.addEventListener('click', function(evt) {
   currentCard = findParentNode(target, CARD_CLASS);
 
   if (isLegalCardArea(target, currentCard, IS_FOOTER_CARD)) {
-    if(currentCard.dataset.isMouseOut == 'true') {
+    if (currentCard.dataset.isMouseOut == 'true') {
       currentCard.classList.toggle('active');
     }
 
     currentCard.dataset.isFirstClickCard = true;
   }
-});
+}
 
-CARD_LIST.addEventListener('mouseover', function(evt) {
-  if(currentCard) {
+function setCardFooterStr(currentCard, cardData) {
+  let footerElem = currentCard.querySelector('.card__buy');
+  if(currentCard.classList.contains('active')) {
+    footerElem.textContent = cardData.templateStrs.active;
+  } else {
+    footerElem.innerHTML = cardData.buy;
+  }
+}
+
+
+CARD_LIST.addEventListener('mouseover', onMousemoveCardList);
+
+function onMousemoveCardList(evt) {
+  if (currentCard) {
     return;
   }
-
+  let CARD_TAG_NAME = 'ARTICLE';
   let target = evt.target;
-  while(target != this) {
-    if (target.tagName == 'ARTICLE') break;
+
+  while (target != this) {
+    if (target.tagName == CARD_TAG_NAME) break;
     target = target.parentNode;
   }
 
-  if(target == this) return;
+  if (target == this) return;
 
   currentCard = target;
-});
+}
 
 
-CARD_LIST.addEventListener('mouseout', function(evt) {
-  if(!currentCard) return;
+CARD_LIST.addEventListener('mouseout', onMouseoutCardList);
+
+function onMouseoutCardList(evt) {
+  if (!currentCard) return;
 
   let relatedTarget = evt.relatedTarget;
 
-  if(relatedTarget) {
-    while(relatedTarget) {
-      if(relatedTarget == currentCard) return;
+  if (relatedTarget) {
+    while (relatedTarget) {
+      if (relatedTarget == currentCard) return;
       relatedTarget = relatedTarget.parentNode;
     }
   }
 
-  if(currentCard.dataset.isFirstClickCard == 'true' && currentCard.dataset.isMouseOut == 'false') {
+  if (currentCard.dataset.isFirstClickCard == 'true' && currentCard.dataset.isMouseOut == 'false') {
     currentCard.dataset.isMouseOut = true;
     currentCard.classList.toggle('active');
   }
 
   currentCard = null;
+}
 
-});
 
 function findParentNode(target, parentClass) {
   let findElem = false;
@@ -148,7 +167,7 @@ function findFooterParent(elem) {
 }
 
 function isLegalCardArea(target, currentCard, notFooter) {
-  if (currentCard.tagName.toLowerCase() === 'article' && !notFooter || target.classList.contains('card__buy-link')) {
+  if(currentCard.tagName.toLowerCase() === 'article' && !notFooter || target.classList.contains('card__buy-link')) {
     return true;
   }
 
