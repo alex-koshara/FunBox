@@ -6,14 +6,15 @@
 
   @media (min-width: $tablet) {
     flex-direction: row;
-    &__wrap {
+    &__wrap:first-child {
       width: 100%;
     }
+    justify-content: space-evenly;
   }
 
   @media (min-width: $desktop) {
     justify-content: space-around;
-    &__wrap {
+    &__wrap:first-child {
       width: auto;
     }
   }

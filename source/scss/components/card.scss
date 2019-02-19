@@ -1,8 +1,8 @@
 .card {
   width: 320px;
   display: flex;
-  flex-direction: column;
   position: relative;
+  flex-direction: column;
 
   &__container:hover {
     & .card__main,
@@ -17,7 +17,6 @@
       background-color: $hover-card;
     }
   }
-
 
   &.active {
     & .card__main,

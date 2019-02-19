@@ -7,12 +7,11 @@
       "fill" : "с фуа-гра",
       "portions" : "10 порций",
       "prize" : "мышь в подарок",
-      "weightNum" : "5",
+      "weightNum" : "0,5",
       "toWeight" : "кг",
       "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state" : {
         "disabled": false,
-        "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
       },
@@ -33,7 +32,6 @@
       "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state": {
         "disabled": false,
-        "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
       },
@@ -54,7 +52,6 @@
       "buy": "Чего сидишь? Порадуй котэ, <a href='#' class='card__buy-link'>купи.</a>",
       "state": {
         "disabled": true,
-        "isClicked": false,
         "isMouseOut": false,
         "isFirstClickCard": false
       },
