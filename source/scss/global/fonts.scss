@@ -3,11 +3,10 @@
     @font-face {
       font-family: $family;
       font-weight: $weight;
-  
+
       src: url('#{$path}.woff2') format('woff2'),
       url('#{$path}.woff') format('woff');
     }
   }
-  
+
 @include font-face('Exo', '../fonts/Exo2Thin', 300);
-// @include font-face('Exo', '../fonts/Exo2Bold', 700);

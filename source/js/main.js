@@ -91,10 +91,12 @@ function onClickCardList(evt) {
 
 function setCardFooterStateStr(currentCard, cardData) {
   let footerElem = currentCard.querySelector('.card__buy');
-  if(currentCard.classList.contains('active')) {
-    footerElem.textContent = cardData.templateStrs.active;
-  } else {
-    footerElem.innerHTML = cardData.buy;
+  if(!currentCard.classList.contains('card--disabled')) {
+    if(currentCard.classList.contains('active')) {
+      footerElem.textContent = cardData.templateStrs.active;
+    } else {
+      footerElem.innerHTML = cardData.buy;
+    }
   }
 }
 
