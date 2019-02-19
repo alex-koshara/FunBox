@@ -18,7 +18,7 @@
     }
   }
 
-  
+
   &.active {
     & .card__main,
     & .card__top {
@@ -31,7 +31,7 @@
     & .card__weight-wrap {
       background-color: $active-card;
     }
-    
+
     &:hover {
       & .card__main,
       & .card__top {
@@ -46,7 +46,7 @@
       }
     }
   }
-  
+
   @media (min-width: $tablet) {
     margin-left: auto;
     margin-right: auto;
@@ -178,7 +178,7 @@
 
 .card__buy {
   margin: 0;
-  padding-right: 10px;
+  padding-right: 9px;
   padding-bottom: 10px;
   padding-top: 12px;
   padding-left: 6px;
@@ -209,14 +209,17 @@
     z-index: 2;
   }
   & .card__main,
-    & .card__top {
-      border-color: $disabled-card;
-    }
-    & .card__triangle {
-      color: $disabled-card;
-      background: linear-gradient(-45deg, white 0, white 32px, $disabled-card 32px, $disabled-card 36px, transparent 34px);
-    }
-    & .card__weight-wrap {
-      background-color: $disabled-card;
-    }
+  & .card__top {
+    border-color: $disabled-card;
+  }
+  & .card__triangle {
+    color: $disabled-card;
+    background: linear-gradient(-45deg, white 0, white 32px, $disabled-card 32px, $disabled-card 36px, transparent 34px);
+  }
+  & .card__weight-wrap {
+    background-color: $disabled-card;
+  }
+  & .card__buy {
+    color: $disabled-card--text;
+  }
 }
